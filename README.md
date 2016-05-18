@@ -1,5 +1,5 @@
 # codekit3
-This is the private CodeKit 3 beta repository. It where you download betas and report issues.
+This is the private CodeKit 3 beta repository. It's where you download betas and report issues. See the Changelog file for what's new in each Beta release.
 
 ### How to Not Suck At Bug Reporting:
 1. Make sure you're running the latest beta! Auto-updater won't work in beta.
