@@ -1,0 +1,6 @@
+Beta 1 (17 May 2016)
+-------------------------
+
+- Initial Release
+- Forgot to mention in the video: If you add a Hook that runs on file types for which CodeKit does not have built-in processing (such as minifying HTML), those Hooks will be run as long as the file's output option is not 'ignore'.
+- Gif optimization is also a thing. Select a Gif in the app to see it.
