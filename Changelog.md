@@ -1,5 +1,5 @@
 # Beta 2 (23 May 2016)
-======================
+----------------------
 
 ### New:
 -- Hooks now add messages to the Log when they exit with a (0) code and print anything to StdOut or when they print anything to StdErr, regardless of exit code.
@@ -9,6 +9,8 @@
 -- There are additional commands in the Status Bar menu so you can control the app when running without the Dock icon.
 
 -- JSX file extensions are now treated as JavaScript files.
+
+-- The dock icon now switches to white when you enable Dark Menu mode.
 
 
 ### Fixed:
@@ -43,7 +45,7 @@
 
 
 # Beta 1 (17 May 2016)
-======================
+----------------------
 
 - Initial Release
 - Forgot to mention in the video: If you add a Hook that runs on file types for which CodeKit does not have built-in processing (such as minifying HTML), those Hooks will be run as long as the file's output option is not 'ignore'.
