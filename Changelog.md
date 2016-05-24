@@ -1,3 +1,10 @@
+# Beta 3 (23 May 2016)
+----------------------
+
+This release fixes the Dock icon issue. It should now switch between black and white when the menu mode changes. Even on external displays. (Yes, this is an entire release just to fix one issue. I have now spent 6 hours on it.) 
+
+
+
 # Beta 2 (23 May 2016)
 ----------------------
 
