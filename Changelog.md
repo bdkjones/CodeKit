@@ -1,7 +1,37 @@
-# Beta 3 (23 May 2016)
+# Beta 4 (28 May 2016)
 ----------------------
 
-This release fixes the Dock icon issue. It should now switch between black and white when the menu mode changes. Even on external displays. (Yes, this is an entire release just to fix one issue. I have now spent 6 hours on it.) 
+### New:
+-- TypeScript files using "import" statements now link dependent files correctly so CodeKit can compile the right parent file when dependents change. (The older "reference path" style is also still supported.)
+
+-- ALL of CodeKit's import scanners have been refactored in this release. (This is groundwork to support ES6 imports in JavaScript and prepending/appending skipped files.) As a result, I need to test EVERY language in the app to make sure imports are still found correctly---especially imports that target CodeKit Frameworks.
+
+
+### Changed:
+-- New Preview icon.
+
+-- Server icon has a chevron to more clearly indicate what it does.
+
+-- Log messages are now monospaced
+
+-- Log coloring tweaked
+
+
+### Fixed:
+-- "Use Libsass" checkbox is now disabled in Compass projects
+
+-- If you change a setting and quit the app immediately afterwards, that change is now recorded in the project's config file before the app quits.
+
+-- Changing Build Folder settings now resets the Preview Server correctly.
+
+-- An issue where the app would incorrectly report that Project B was a subfolder of Project A when you attempted to add B to the app.
+
+-- Stylus files now compile. 
+
+-- Jade AND Pug files should now compile correctly.
+
+-- An existing project can now never be added twice, even if CodeKit's file-watching is paused and you rename the project
+ 
 
 
 
