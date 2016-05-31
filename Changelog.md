@@ -1,3 +1,28 @@
+# Beta 5 (31 May 2016)
+----------------------
+
+### New:
+-- Cmd+F will now bring up the search field if you're in a part of the app that can be searched.
+
+-- JavaScript files now support ES6 'import' syntax. CodeKit will correctly map dependencies between files that use 'import'. A third section appears in the "Linked Files" pane of the JS inspector that shows these imports. The old @codekit-prepend/append statements are still supported, but you should not use both at once. Currently, CodeKit doesn't *do* anything with these links; you'll have to enable Babel and use the commonjs module to transpile the files into a single JS file that can be used in current browsers.
+
+
+### Fixed:
+-- An issue where the search fields would de-select themselves
+
+-- An issue where Sass partials were not linked correctly by the import scanner
+
+-- An issue where the TypeScript compiler's error messages weren't shown in the log.
+
+-- An issue where the TypeScript compiler would report insanely long, relative file paths in error messages.
+
+-- An issue that caused certain TypeScript import statements to not be detected correctly by the import linker
+
+
+
+
+
+
 # Beta 4 (28 May 2016)
 ----------------------
 
