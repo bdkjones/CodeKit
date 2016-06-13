@@ -1,3 +1,52 @@
+# Beta 6 (12 June 2016)
+-----------------------
+
+### Critical Warning:
+I'm going to change the format of the config3.codekit file to make it smaller for really large projects. To ensure you don't lose your settings, you need to download this beta release and add to the app every project you want to keep your 3.0 settings for. Then, install the next Beta when I release it. That one will not reset the data in the app, but it will write the new settings file format. As long as your projects are in Beta 6 when you install Beta 7, you'll be fine. 
+
+
+### New:
+-- The Browsers pane in Preferences has a new option to choose the default Preview Address.
+
+
+### Changed:
+-- Skipped Folders are now displayed in the UI with a custom inspector. If your project uses a build folder, you can choose to copy those folders to the build folder when the project builds.
+
+-- The Build folder is now always skipped, if the project uses a build folder.
+
+-- The project settings file for larger projects is much smaller. 30,000 file project was 11.9MB and is now 8.5MB. The next release will improve this even more, but I had to ship this one first to preserve your settings.
+
+
+### Fixed:
+-- Text is no longer blurry on non-retina screens.
+
+-- PNG and JPEG optimizers now copy files to output paths correctly
+
+-- A potential crash in the preview server if your project uses an external server
+
+-- The Project Settings icon is fixed for non-retina
+
+-- TypeScript files now minify output, if that's selected
+
+-- An issue where settings could be lost for certain files if you moved them around on disk in a certain way
+
+-- An issue where the app would falsely report one project was a child of another if the names were similar. e.g. "myProject" and "myProject-other"
+
+-- An issue where the "Skip This Item" contextual menu command did not work on the clicked row.
+
+-- Skipped Items list in project settings no longer cuts off text
+
+-- An issue where build folder output paths could be calculated incorrectly for certain source folder paths
+
+-- The "Change" link for setting a new Output Path is now hidden if the file is set to "ignore".
+
+-- An issue where saving files in Coda 2 would trigger a project refresh instead of a processing action.
+
+
+
+
+
+
 # Beta 5 (31 May 2016)
 ----------------------
 
