@@ -1,3 +1,24 @@
+# Beta 8 (29 June 2016)
+-----------------------
+
+This release fixes a few things. I've mainly been working on the build flow, which has had to change pretty dramatically after I realized there was a shortcoming in my earlier approach. While it looks like this release doesn't have too much in it, there's a LOT going on under the hood to make the build process come together. Hang in there.
+
+### Fixed:
+
+-- Renaming files will now (again) correctly trigger a project refresh to capture the change.
+
+-- The item counts in the project sidebar and popover now stay in sync.
+
+-- The project sidebar's subtitles are no longer editable.
+
+-- If you rename a project folder on disk, CodeKit now adopts that new name in the UI unless you have previously edited the name in the UI to assign a specific value.
+
+-- The rare and incorrect "missing on disk" for newly-added projects should FINALLY no longer occur. 
+
+-- Dragging to reorder Hooks would sometimes drop the dragged Hook in the wrong spot due to a bug in NSTableView. That has been worked-around.
+
+
+
 # Beta 7 (15 June 2016)
 -----------------------
 
