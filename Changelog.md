@@ -1,3 +1,23 @@
+# Beta 9 (13 June 2016)
+-----------------------
+
+### Critical:
+The name of the settings file has changed from "codekit3.config" to "config.codekit3". For projects that you've been using with the CodeKit 3 beta, you need to manually change the name of the config file before you add the project to Beta 9. Otherwise, the app won't use your saved settings for that project.
+
+
+### Fixed:
+
+-- The "Apply To Existing Files" button in the Languages section of Project Settings now works.
+
+-- Continued Build implementation (it's coming; I swear.)
+
+-- Other stuff I forgot to put in my Git notes.
+
+
+
+
+
+
 # Beta 8 (29 June 2016)
 -----------------------
 
