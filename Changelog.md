@@ -1,4 +1,32 @@
-# Beta 9 (13 June 2016)
+# Beta 10 (26 July 2016)
+------------------------
+
+### New:
+The UI for the BUILD section is now complete. Please give it a go; I'm hoping it's self-explanatory. You can add steps to the build flow and those steps will be saved in your project config, but the actual "build project" button does not yet do anything. There's a couple things to finalize there; it will be active in the next beta. In the meantime, please take a look at the build UI and let me know what you think, etc.
+
+### Changes:
+
+-- New file icons for all types that CodeKit supports (Less, Sass, etc.)
+-- The 'codekit3.config' file is now double-clickable to add or switch to a project in the app.
+
+
+### Component Updates:
+
+-- pug 1.0.0-alpha6
+-- autoprefixer 6.3.7
+-- uglify-js 2.7.0
+-- stylus 0.54.5
+-- eslint 3.1.1 (bunch of new rules)
+-- babel 6.11.4
+-- less-clean-css 1.5.1
+-- node 6.3.1
+-- neat 1.8 (no longer requires Bourbon)
+
+
+
+
+
+# Beta 9 (13 July 2016)
 -----------------------
 
 ### Critical:
