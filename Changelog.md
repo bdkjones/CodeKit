@@ -1,3 +1,23 @@
+# Beta 11 (10 August 2016)
+--------------------------
+
+### THE BUILD PROCESS:
+
+-- The build process is complete and active. I made a short video about how it works, including a discussion of WHY it works the way it does. Watch the video, then give it a shot: https://www.dropbox.com/s/irq4z7w8wm9949h/The%20Build%20Process.mp4?dl=0
+
+
+### Changes:
+
+-- The project config file can now be hidden. The option is in the General tab of Project Settings.
+
+-- Hooks set in "New Project Defaults" (if any) will now migrate from 2.x to 3.0. Not for you guys, because you've already installed 3.0 once, but for everyone else they should come across.
+
+
+
+
+
+
+
 # Beta 10 (26 July 2016)
 ------------------------
 
