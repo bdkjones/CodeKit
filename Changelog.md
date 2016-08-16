@@ -1,3 +1,24 @@
+# Beta 12 (15 August 2016)
+--------------------------
+
+### NEW:
+
+-- AppleScript API endpoint to build a project
+
+### Fixed:
+
+-- A crash that could happen during a build
+
+-- An issue where saving any file that's not a stylesheet would not trigger a browser refresh
+
+-- The "process remaining items" build step title is no longer editable
+
+-- An issue where Hooks might be run twice for each build step during builds
+
+
+
+
+
 # Beta 11 (10 August 2016)
 --------------------------
 
