@@ -1,3 +1,36 @@
+# Beta 13 (26 August 2016)
+--------------------------
+
+### NEW:
+
+-- Hooks have changed. Until now, Hooks have been run at the END of a group of files being processed. (Like if you saved 4 files at once, your Hook ran once after all 4 files had been processed by CodeKit's built-in steps.) From now on, Hooks run once FOR EACH FILE. You'll find the same CK_INPUT_PATHS and CK_OUTPUT_PATHS environment variables set for Bash scripts, but your Hook will run over and over for each file that it matches, AS THE FILE IS PROCESSED. CodeKit's built-in steps go first, then your Hook. This is easier for users to Grok and it makes Hooks a bit easier to write. You'll see your Hook results in the same result message as the rest of CodeKit's processing for a given file; there are no longer separate messages for Hooks. It's all just much cleaner and "what you expect".
+
+-- You can now tell CodeKit to use .eslintrc files instead of (or in addition to) the UI settings.
+
+-- The JPEG optimizer should be much faster. 
+
+### Fixed:
+
+-- A crash that occurred if you added a "run script" build step and built the project without first refreshing it once.
+
+-- Builds now actually stop on the first error if set to do so. You may see an additional few files compile after the first error. That's because CodeKit is processing 8 files at once, so the others have to finish up before the build is canceled.
+
+-- Image optimizers will no longer fail because the output folder doesn't exist.
+
+-- An issue where the JS import linker falsely identified huge lines of a minified file as potential import statements
+
+-- Browsers no longer refresh if all you're doing is checking the syntax of a file
+
+-- Generic files now have a "Process" button in the inspector.
+
+-- All compilers now set a NODE_PATH Env variable so that node modules installed in either the project's root folder or next to the file being compiled will be found. Example: ESLint plugins.
+
+-- Issue where some folders were falsely reported as children of existing projects when you attempted to add them to the app
+
+
+
+
+
 # Beta 12 (15 August 2016)
 --------------------------
 
