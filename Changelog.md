@@ -1,3 +1,47 @@
+
+# Beta 14 (13 September 2016)
+--------------------------
+
+### NEW:
+
+-- You can now add arbitrary file extensions as "other" languages in both Project Settings and New Project Defaults. This lets you specify custom output-file-path rules for these languages. Please test this extensively; it may be fragile.
+
+-- CodeKit will now refresh "partial" pages. That is, your page need no longer have a HEAD tag. It simply needs to have the text/html content-type header. If your page DOES have a head tag, CodeKit will put its script there. Otherwise, it looks for a body tag and puts it there. Failing that, it just throws the script at the end, which lets you refresh pages that aren't even valid HTML.
+
+-- PNG, GIF and JPG are now listed as languages in Project Settings
+
+
+### Fixed:
+
+-- An issue that would cause changes to file-output-path rules in the "New Project Defaults" area to not apply correctly. 
+
+-- The Command Column buttons (left-hand side) now have a pressed state
+
+-- Issue where two projects could point to the same folder if you follow a very specific set of steps with one project disabled. This caused chaos.
+
+-- Build Settings are now read-only once the 3.0 trial has expired
+
+-- Hitting the back button in your browser while viewing the Preview URL will no longer produce the dreaded "connection to CodeKit lost" red banner. The page stays connected.
+
+-- Issue where the "Apply Default Output Paths to Existing Files" did not work in Project Settings.
+
+-- That "apply to existing files" button is now disabled when in New Project Defaults mode
+
+
+### Changed:
+
+-- ES2015 and ES2016 are now the default Babel Presets. This will affect new users, but won't modify the New Project Defaults for existing beta testers.
+
+-- Uglify.js updated to 2.7.3
+
+-- SVGO update to 0.7.0. Includes "removeXNLNS" rule
+
+-- AutoPrefixer 6.4.1
+
+
+
+
+
 # Beta 13 (26 August 2016)
 --------------------------
 
