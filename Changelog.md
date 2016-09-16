@@ -1,3 +1,31 @@
+# Beta 15 (16 September 2016)
+-----------------------------
+
+### New:
+
+-- "AutoBuild": Your project uses a build folder. The document root for the preview server is the build folder. You add an image. But to have it show up in the preview, you have to build the project so that CodeKit processes that new image to the right spot in the build folder. This now happens automatically. Add the image, the project will refresh, after the refresh completes any new or renamed items are processed. (This only happens if you use a build folder.) It can be toggled in Project Settings > Build Process. REALLY need to test this feature to make sure it's working well.
+
+-- "Clean Builds": Before building, CodeKit will delete all existing items in the build folder. Again, this can be toggled in Project Settings > Build Process.
+
+-- Many new project icons
+
+-- Kit files can now use root-relative import statements: @import "/somefolder/somefile". These are always resolved from the project root folder.
+
+-- A new command in the Tasks menu: "Apply Best Defaults For Using Build Folders" will automatically adjust the New Project Defaults for every language so that output paths and actions are set up for build folders automatically. Handy. I see myself writing many emails telling people to use this.
+
+
+### Fixed:
+
+-- An issue where the app would not process file-change events that occurred during a Project Refresh. Those changes are now queued for when the refresh completes and are then fired correctly.
+
+-- An issue where ESLint failed to run because my NPM-Cleaning script deleted a needed file
+
+-- When editing New Project Defaults, the app icon is now displayed in the General tab.
+
+
+
+
+
 
 # Beta 14 (13 September 2016)
 --------------------------
