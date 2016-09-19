@@ -1,3 +1,34 @@
+# Release Candidate 1 / Beta 16 (18 September 2016)
+---------------------------------------------------
+
+### New:
+
+-- (Be sure to read all the Beta 15 stuff; LOTS of big new things)
+
+-- CodeKit now passes plugins AND presets to Babel if you enable any of them. The order it passes presets has been set from "most experimental" to "least experimental". If you use the decorators plugin, CodeKit also makes sure it comes before the classes one. (This is obviously not done if you set these in a .babelrc file---see below.)
+
+-- The "transform-decorators-legacy" Babel plugin is now built-in
+
+-- You can now set CodeKit to ignore/merge/use-exclusively .babelrc files. If you need to fine-tune babel's configuration, choose "use .babelrc file settings only" and CodeKit won't pass any options to babel other than the one that creates an output file at the specified location for your input file.
+
+
+### Changed:
+
+-- ESLint updated to 3.5.0. New rules.
+
+-- Babel now at 6.15.0
+
+-- New icons for ESLint and Babel. 
+
+-- The Components tab of the About window now has a nice fading top border. Details matter.
+
+
+
+
+
+
+
+
 # Beta 15 (16 September 2016)
 -----------------------------
 
