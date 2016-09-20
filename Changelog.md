@@ -1,3 +1,24 @@
+# Release Candidate 2 (20 September 2016)
+---------------------------------------------------
+
+### New:
+
+-- SourceType and ECMAVersion options now available for ESLint. Right at the top of Project Settings.
+
+-- Additional operators (including full Regex matching) for Hook conditions
+
+-- There's now a deprecation alert if you choose "New Compass Project". Turns out Compass is no longer under active development.
+
+-- The default Skipped Items list now includes a path to skip logs for a default laravel install. This won't affect you guys, since your defaults are already set, but it will apply to users who upgrade to 3 upon release.
+
+
+### Fixed:
+
+-- Issue where the files list scrollView cut off prematurely after dragging a JS file to the Linked Files tab.
+
+
+
+
 # Release Candidate 1 / Beta 16 (18 September 2016)
 ---------------------------------------------------
 
