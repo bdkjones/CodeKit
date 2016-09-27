@@ -1,3 +1,29 @@
+# Release Candidate 3 (27 September 2016)
+---------------------------------------------------
+
+### NEW: Kit Optionals
+
+-- The Kit language now has "optionals". They look like this: &lt;!-- $myVar? --&gt;
+
+-- The trailing question mark means, "If $myVar has a value, put it here. Otherwise, do nothing."
+
+-- Kit variable names may no longer end in a '?'. This will produce an error: &lt;!-- $myVar? = something --&gt;
+
+-- This makes it very easy to do active classes on items in a Nav menu. You know, if someone were building a website and needed such a thing. It would be handy if that person could just change an entire language to make the task simple.
+
+
+### Changed:
+
+-- When CodeKit creates import links for JS and Coffee files, it will now check to see if the imported file's path contains "node_modules" or the path to your "bower_components" folder. If it does, syntax-checking is automatically turned off for that imported file. No more "jQuery has 1,441 errors".
+
+-- CodeKit is now pulling resources from the new URL: codekitapp.com. Many of the help links are 404-ed at this point, but will work once the new site goes live. You should find that the Bower components list download is much snappier. 
+
+-- WARNING: The updater may tell you that a new version of CodeKit is available. It is not. Do NOT attempt to update the app. Just click "Skip This Version" in the window. This is just me testing the updater on the new URL.
+
+
+
+
+
 # Release Candidate 2 (20 September 2016)
 ---------------------------------------------------
 
@@ -15,6 +41,8 @@
 ### Fixed:
 
 -- Issue where the files list scrollView cut off prematurely after dragging a JS file to the Linked Files tab.
+
+
 
 
 
