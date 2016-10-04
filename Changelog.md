@@ -1,3 +1,52 @@
+# Release Candidate 4 (4 October 2016)
+---------------------------------------------------
+
+### New--Locking Output Paths
+
+-- You'll see a new padlock icon next to output paths in the inspector. This functionality has always been part of CodeKit since version 1.x, but it's never been user-exposed before. When you set an output path manually using the "change" button, CodeKit marks that path as "locked", meaning the app won't automatically change it anymore. Normally, if you have not manually set an output path, the app will adjust the output path as the source file moves/renames. The lock button allows you to (1) see this state for the path and (2) change it. 
+
+### Kit Improvements:
+
+-- Kit files now respect indentation when importing files. The contents of an imported file will be indented by the same amount of leading whitespace there was before the special import comment.
+
+-- Variable declaration comments in Kit will no longer produce blank lines in the output file, so long as there is no trailing whitespace after the end of the special comment that declares the variable.
+
+
+### CSS Improvements:
+
+-- Can now set the OutputStyle for regular CSS files. Same as Sass.
+
+-- Source maps now available when processing regular CSS files.
+
+
+### Hooks:
+
+-- Hooks now inherit the ENV that CodeKit itself runs in. Fixes issue where PATH wasn't set correctly, so you couldn't call stuff without doing /usr/bin/...
+
+-- When Hooks run successfully, their output is now logged correctly in CodeKit's log.
+
+-- Hooks now run with /bin/bash instead of /bin/sh
+
+
+### Fixed:
+
+-- An issue where builds failed if "clean build" was enabled and the build folder did not exist when the build started.
+
+-- Issue where the "don't show this for 1 hour" link on the "laggy connection" banner did not work.
+
+-- MultiMarkdown updated to 5.4. Fixes several issues with MD files.
+
+-- The folder icon was backwards on the window overlay that appears when you add a project.
+
+-- An issue where running AutoPrefixer or Bless on a regular CSS file would overwrite the source file.
+
+
+
+
+
+
+
+
 # Release Candidate 3 (27 September 2016)
 ---------------------------------------------------
 
