@@ -1,5 +1,14 @@
-#Release Candidate 5 (10 October 2016)
+#Release Candidate 6 (+5) (10 October 2016)
 ---------------------------------------------------
+
+### RC6 Fixes:
+
+-- RC5 was short-lived. I ran into two additional issues that I wanted to fix immediately:
+
+-- An issue where empty folders and skipped folders weren't displayed in the files list in RC5.
+
+-- An issue where, upon refreshing a project, a literal shit ton of compiling occurred because CodeKit was under the false impression that all the stuff in your project was just added during the refresh.
+
 
 ### Fixed:
 
@@ -15,6 +24,7 @@
 
 -- If you combined multiple project folders into one while CodeKit was NOT running, the app failed to detect that the projects were merged when it started up. That would have led to a world of pain. Projects you combine into others are now removed when the app restarts.
 
+
 ### Changed:
 
 -- The .codekit-cache folder is no longer created unless it's actually needed.
@@ -27,9 +37,11 @@
 
 -- To streamline handling for MASSIVE projects and massive simultaneous file-events (think dragging 400 subfolders around in a project), CodeKit will no longer automatically update the output path of a source file if you rename/move that source file's output file. This was a very subtle feature and it's not clear that it exists. Users may not even realize it has occurred. The simpler, cleaner rule is: "if you want to change a file's output path, you do it in CodeKit's UI."
 
+
 ### New:
 
 -- If there is no selected project in CodeKit, your web browser will display a "no active project" page instead of a 404. Much clearer. Idea was Guy's.
+
 
 ### Plan:
 
