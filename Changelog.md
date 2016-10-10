@@ -1,3 +1,42 @@
+#Release Candidate 5 (10 October 2016)
+---------------------------------------------------
+
+### Fixed:
+
+-- A crash if you opened the CodeKit Frameworks section of Project Settings and then removed the current project before switching to another one.
+
+-- A rare crash when adding a project with a report that said, "Controller content cannot be nil".
+
+-- Issue where the app sometimes stopped seeing file-change events in a Project until you refreshed the project.
+
+-- Issue where the "New X Project" menu commands would fail if you selected a folder that's already in CodeKit as a project.
+
+-- A crash that occurred if scanning a malformed file with ESLint.
+
+-- If you combined multiple project folders into one while CodeKit was NOT running, the app failed to detect that the projects were merged when it started up. That would have led to a world of pain. Projects you combine into others are now removed when the app restarts.
+
+### Changed:
+
+-- The .codekit-cache folder is no longer created unless it's actually needed.
+
+-- Inspector strings are now title-cased to match macOS conventions.
+
+-- The Google Web Starter Kit install process is now overhauled to work correctly with a build folder. It's actually really slick.
+
+-- Susy updated to 2.2.12
+
+-- To streamline handling for MASSIVE projects and massive simultaneous file-events (think dragging 400 subfolders around in a project), CodeKit will no longer automatically update the output path of a source file if you rename/move that source file's output file. This was a very subtle feature and it's not clear that it exists. Users may not even realize it has occurred. The simpler, cleaner rule is: "if you want to change a file's output path, you do it in CodeKit's UI."
+
+### New:
+
+-- If there is no selected project in CodeKit, your web browser will display a "no active project" page instead of a 404. Much clearer. Idea was Guy's.
+
+### Plan:
+
+-- I intend to do one more RC with TypeScript 2.0. Barring any major bugs, that will become the GM.
+
+
+
 # Release Candidate 4 (4 October 2016)
 ---------------------------------------------------
 
