@@ -1,3 +1,42 @@
+#Release Candidate 7 (19 October 2016)
+---------------------------------------------------
+
+### NEW:
+-- A build option to automatically create a .gitignore file in the build folder. It's on by default. Idea courtesy of @guymeyer. 
+
+-- The project inspector now has a build project button at the bottom.
+
+
+
+### Changed:
+-- The "process all items" build step now handles all items that are not processed in any OTHER step, not just any PREVIOUS step. This lets you add a step such that certain files are built last.
+
+
+
+### Fixed:
+-- An issue where the browser would hang for ~30 seconds when a project that uses an External Server received a 301-Redirect response from that server.
+
+-- When using an external server, the browser-injection script is now only injected in content that has a closing HEAD or BODY tag. Previously, it was injected in all content that had content-type text/html. The latter approach is still used for projects that do NOT use an external server.
+
+-- A crash that could occur if you supplied invalid RegEx for a Hook's pattern matching rule.
+
+-- Issue where Markdown files failed to compile if their output directory did not exist.
+
+-- One of the command icons was misaligned by 1 pixel. @guymeyer caught it.
+
+
+### Component Updates:
+-- ESLint 3.8.1
+-- TypeScript 2.0.3
+-- Autoprefixer 6.5.1
+-- Babel 6.16.0
+-- SVGO 0.7.1
+
+
+
+
+
+
 #Release Candidate 6 (+5) (10 October 2016)
 ---------------------------------------------------
 
