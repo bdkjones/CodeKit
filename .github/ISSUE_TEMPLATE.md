@@ -2,9 +2,8 @@
 
 How to Not Suck At Bug Reporting:
 
-1. Make sure you're running the latest beta! Auto-updater won't work in beta.
-2. Check existing issues to see if yours already exists.
-3. Use the template below and label each section accordingly.
+1. Check existing issues to see if yours already exists.
+2. Use the template below and label each section accordingly.
 
 -->
 
