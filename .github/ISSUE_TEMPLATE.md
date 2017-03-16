@@ -1,10 +1,7 @@
 <!--
-
-How to Not Suck At Bug Reporting:
-
-1. Check existing issues to see if yours already exists.
-2. Use the template below and label each section accordingly.
-
+When reporting a bug:
+    1. Check existing issues to see if yours already exists.
+    2. Use the template below and label each section accordingly.
 -->
 
 **Quick, short summary:**
