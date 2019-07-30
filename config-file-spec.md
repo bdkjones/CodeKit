@@ -237,7 +237,7 @@ If `0`, CodeKit will automatically set an `apple-touch-icon.png` or `favicon` im
 # Files
 
 #### Discussion
-In CodeKit, every file has its own settings. This provides flexibility—one file can be set to minify while another does not, etc. This top-level property contains settings for each individual file in the Project.
+This top-level property contains settings for each individual file in the Project. In CodeKit, every file has its own settings, which provides flexibility—one file can be set to minify while another does not, etc. 
 
 When a new file is added to a Project for the first time, it won't have an entry in this object. Its initial settings are populated from whichever `languageDefaults` property of `projectSettings` is appropriate (based on file type). If `projectSettings` is missing an entry for a given `languageDefaults`, CodeKit falls back to the settings the user has specified under "Defaults For New Projects" within the app. At that level, **every** setting is guaranteed to have a value.
 
