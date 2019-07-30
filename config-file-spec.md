@@ -345,14 +345,14 @@ Note: CodeKit *does* allow setting an Output Path to a location outside of the P
 
 ### "oF" - `String`
 
-This stands for "Output Flags". It is a **bitmask** (a single number where the value of each bit represents a boolean). The default value is `0`. For each 
+This stands for "Output Flags". It is a **bitmask** (a single number where the value of each bit represents a boolean). The default value is `0`. Currently, only the first three bits are used:
 
 
 | Bit Position    | Name                       | Explanation     |
 | --------------- | -------------------------- | --------------- |
-| 0               | OutputActionWasSetByUser   | CodeKit automatically changes a file's Output Action to `ignore` when that file is imported into others. If the value of this bit is `1`, the app will not do that. CodeKit sets this bit to `1` anytime the user explicitly chooses an Output Action for the file in the UI.
+| 0               | OutputActionWasSetByUser   | CodeKit automatically changes a file's Output Action to `ignore` when that file is imported into others. If the value of this bit is `1`, the app will not automatically change the Output Action. CodeKit sets this bit to `1` anytime the user explicitly chooses an Output Action for the file in the UI.
 | 1               | OutputPathWasSetByUser     | CodeKit adjusts a file's Output Path automatically when the file is renamed, moved, or when the Build folder is enabled/disabled. If this bit is set to `1`, the Output Path is locked; it will not be automatically adjusted. This bit is set to `1` when a user explicitly sets an Output Path for a file or clicks the "lock" button in CodeKit's UI.
-| 2               | OutputPathIsOutsideProject | If this bit is set to `1`, CodeKit interpets the path supplied for the `oAP` property as relative to the disk root instead of the Project Root Folder.
+| 2               | OutputPathIsOutsideProject | If this bit is set to `1`, CodeKit interprets the path supplied for the `oAP` property as relative to the disk root instead of the Project Root Folder.
 
 
 
