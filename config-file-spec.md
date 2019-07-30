@@ -1,4 +1,11 @@
-# Introduction
+# Table of Contents
+
+   1. [Introduction](#introduction)
+   2. [Top-Level Properties](#top-level-properties)
+
+
+
+## Introduction
 
 A CodeKit 3 configuration file stores information about a CodeKit Project, its settings, and all the files it contains. 
 
@@ -68,19 +75,46 @@ The top level of the Config File is an object of type `{"key": value}`. It looks
 #### "AAInfo" — `String`
 Anything you provide will be overwritten by CodeKit, but you may want to explain that this is a CodeKit configuration file and the app can be downloaded at https://codekitapp.com/
 
-#### "buildSteps" - `[{"string": value}, ...]`
-This stores information about each Build Step that a user has defined. It is an `Array` of `Objects` of type `{"string" : value}`. [See Details](#build-steps)
+#### "buildSteps" - `[{"key": value}, ... ]`
+This stores information about each Build Step that a user has defined. It is an `Array` of `Objects` of type `{"key" : value}`. [See Details](#build-steps)
 
 #### "creatorBuild" - `String` (REQUIRED)
-This is the build number for the version of CodeKit that created this file. The number is visible in CodeKit's About window. You MUST supply a **string** that contains a number equal to the version of CodeKit you're writing the Config file for. 
+This is the build number for the version of CodeKit that created this file. The number is visible in CodeKit's About window. You MUST supply a **string** that contains a number equal to the version of CodeKit you're targeting. CodeKit will ignore any Config File that is missing this value.
 
-As of August 2019, use `"31491"`, which is CodeKit 3.9.2.
+As of August 2019, use `"31491"`, which is CodeKit 3.9.2. This documentation was written against that CodeKit version.
 
-As CodeKit evolves, the app uses this number to decide if a Config File must be "migrated" to a newer format before it can be used. You are guaranteed forward migration; a Config File written against CodeKit 3.x will always work correctly  
+Whatever build number you enter here is the minimum version of CodeKit that your users should have. If your users have an older version of CodeKit, the Config File will still be read and any values that apply in the older version of the app will be used. However, any values that don't apply to the older version of CodeKit (for a feature that does not exist in the older version) will be discarded permanently.
 
-CodeKit will discard any Config File that does not contain a value for this field.
+You are guaranteed forward-compatibility. Your Config File will work in any future release of CodeKit and will be automatically migrated to future formats, if needed.
+
+#### "files" - `{"key": {"key": value}, ... }`
+
+This is an `Object` that stores settings for each individual file in the Project. [See Details](#files).
+
+#### "hooks" - `[{"key": value}, ... ]`
+
+This is an `Array` of `Objects` of type `{"key": value}` that store information about each [Hook](https:/codekitapp.com/help/hooks/) that is defined for this Project. [See Details](#hooks).
+
+#### "manualImportLinks"
+
+This stores information about import links between files that the user has created via drag-and-drop in CodeKit's UI. When parsing a Config File, you should treat this value as opaque and write it, unmodified, to your output. When creating a Config File from scratch, you should omit this property.
+
+#### "projectAttributes" — `{"key": value, ... }`
+
+This is an `Object` that stores basic biographical information about a Project. [See Details](#project-attributes)
+
+#### "projectSettings" - `{"key": value, ... }`
+
+This is an `Object` that stores the Project Settings for this Project. [See Details](#project-settings)
+
+#### "settingsFileVersion" — `String` (REQUIRED)
+
+Pass the `String` `"3"` for this value. CodeKit will ignore any Config File that is missing this value.
 
 
+
+
+----------------------------
 
 
 # Build Steps
