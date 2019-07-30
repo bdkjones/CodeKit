@@ -310,16 +310,16 @@ This stands for "File Type". It is one of the `Integer` values from the table be
 | Folder (Directory)    | [N/A]      | 2^16  | 65536     |
 
 
-##### The "Other" File Type:
+#### The "Other" File Type:
 This is used for any type of file that is not otherwise listed above. It represents files for which CodeKit has no specific built-in processing. Examples: `.php`, `.html`, `.xml`, `.rb`, etc.
 
-##### Sass vs SCSS:
+#### Sass vs SCSS:
 Note that CodeKit uses two different `ft` values to represent `*.scss` and `*.sass` files. This is done so that the app is future-proof in case Sass and SCSS files ever adopt different, exclusive options.
 
-##### The "Folder" Type:
+#### The "Folder" Type:
 Users can tell CodeKit to skip indexing a particular folder. They do this when the folder contains too many items that aren't relevant and indexing it would take a long time (e.g. `node_modules` folders). When the user does this, CodeKit does not store settings for each file in the folder, nor does it display those files in the UI. Instead, it asks the user what should be done with this folder (and its contents) when the Project builds—should the folder be ignored, or should it be copied into the build directory? To store this setting, an entry in the `files` object may have the value `65536` for `ft`, which means it refers to a folder instead of a file.
 
-##### Reserved Values:
+#### Reserved Values:
 Do not use any value that is not explicitly listed in the table above. Doing so will cause CodeKit to ignore the entire settings object for that particular file.
 
 
