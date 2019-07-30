@@ -3,9 +3,11 @@
    1. [Introduction](#introduction)
    2. [Top-Level Properties](#top-level-properties)
 
+------------------------
 
 
-## Introduction
+
+# Introduction
 
 A CodeKit 3 configuration file stores information about a CodeKit Project, its settings, and all the files it contains. 
 
@@ -72,13 +74,13 @@ The top level of the Config File is an object of type `{"key": value}`. It looks
 }
 ```
 
-#### "AAInfo" — `String`
+### "AAInfo" — `String`
 Anything you provide will be overwritten by CodeKit, but you may want to explain that this is a CodeKit configuration file and the app can be downloaded at https://codekitapp.com/
 
-#### "buildSteps" - `[{"key": value}, ... ]`
+### "buildSteps" - `[{"key": value, ...}, ...]`
 This stores information about each Build Step that a user has defined. It is an `Array` of `Objects` of type `{"key" : value}`. [See Details](#build-steps)
 
-#### "creatorBuild" - `String` (REQUIRED)
+### "creatorBuild" - `String` (REQUIRED)
 This is the build number for the version of CodeKit that created this file. The number is visible in CodeKit's About window. You MUST supply a **string** that contains a number equal to the version of CodeKit you're targeting. CodeKit will ignore any Config File that is missing this value.
 
 As of August 2019, use `"31491"`, which is CodeKit 3.9.2. This documentation was written against that CodeKit version.
@@ -87,19 +89,19 @@ Whatever build number you enter here is the minimum version of CodeKit that your
 
 You are guaranteed forward-compatibility. Your Config File will work in any future release of CodeKit and will be automatically migrated to future formats, if needed.
 
-#### "files" - `{"key": {"key": value}, ... }`
+### "files" - `{"key": {"key": value, ...}, ...}`
 
 This is an `Object` that stores settings for each individual file in the Project. [See Details](#files).
 
-#### "hooks" - `[{"key": value}, ... ]`
+### "hooks" - `[{"key": value, ...}, ...]`
 
 This is an `Array` of `Objects` of type `{"key": value}` that store information about each [Hook](https:/codekitapp.com/help/hooks/) that is defined for this Project. [See Details](#hooks).
 
-#### "manualImportLinks"
+### "manualImportLinks"
 
 This stores information about import links between files that the user has created via drag-and-drop in CodeKit's UI. When parsing a Config File, you should treat this value as opaque and write it, unmodified, to your output. When creating a Config File from scratch, you should omit this property.
 
-#### "projectAttributes" — `{"key": value, ... }`
+### "projectAttributes" — `{"key": value, ... }`
 
 This is an `Object` that stores basic biographical information about a Project. [See Details](#project-attributes)
 
