@@ -10,6 +10,19 @@
       4. [Stylus Keys](#stylus-keys)
       5. [CSS Keys](#css-keys)
       6. [CoffeeScript Keys](#coffeescript-keys)
+      7. [TypeScript Keys](#typescript-keys)
+      8. [HAML Keys](#haml-keys)
+      9. [Pug Keys](#pug-keys)
+      10. [SLIM Keys](#slim-keys)
+      11. [Kit Keys](#kit-keys)
+      12. [Markdown Keys](#markdown-keys)
+      13. [JSON Keys](#json-keys)
+      14. [JPEG Keys](#jpeg-keys)
+      15. [PNG Keys](#png-keys)
+      16. [SVG Keys](#svg-keys)
+      17. [GIF Keys](#gif-keys)
+      18. [Keys for "Folder" File Types](#keys-for-folder-file-types)
+      19. [Keys for "Other" File Types](#keys-for-other-file-types)
    
 
 ------------------------
@@ -577,7 +590,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Stylus files
 
 Note: CodeKit allows users to process CSS files with Libsass to minify them, etc. (A CSS file may create another CSS file.) CSS files may also be the output of a Sass, Less, or Stylus file. In all cases, CodeKit stores the same properties for every CSS file—it simply does not use them when the CSS file is an output file.
 
-In addition to the [shared keys)(#shared-keys) common to all files, CSS files have these keys:
+In addition to the [shared keys](#shared-keys) common to all files, CSS files have these keys:
 
 
 ### "aP" - `Integer`
@@ -621,6 +634,11 @@ In addition to the [shared keys](#shared-keys) common to all files, CoffeeScript
 `Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
 
 
+### "mi" - `Integer`
+
+`Minify Output` If this value is `1`, CodeKit will run TerserJS on the compiled output, after transpiling is complete (if performed). If the value is `0`, TerserJS will not be run.
+
+
 ### "oS" - `Integer`
 
 `Output Style` This controls which output style the CoffeeScript compiler uses when processing this file. It is one of these values:
@@ -645,10 +663,267 @@ In addition to the [shared keys](#shared-keys) common to all files, CoffeeScript
 
 `Transpiler Style` This tells CodeKit which transpiler to run on the *output* file, once the CoffeeScript file is processed. It is one of these values:
 
-| Value             |  Transpiler           |
+| Value             | Transpiler            |
 | ----------------- | --------------------- |
 | 0                 | None                  |
 | 1                 | Babel                 |
+
+.  
+.  
+.  
+
+## JavaScript Keys
+
+Note: CodeKit does not process JavaScript files in-place. That is, a JS file is processed and creates another JS file at a separate path. Some JS files will therefore be "output files" produced by other JS files. CodeKit stores these properties for every JS file—they simply are not used for output files.
+
+In addition to the [shared keys](#shared-keys) common to all files, JavaScript files have these keys:
+
+### "ma" - `Integer`
+
+`Source Map` If this value is `1`, CodeKit will create a source map when processing this file. If the value is `0`, it will *not* create a source map.
+
+
+### "mi" - `Integer`
+
+`Minify Output` If this value is `1`, CodeKit will minify the output file using TerserJS, after transpiling and bundling are complete (if either is performed). If the value is `0`, the output file will not be minified.
+
+
+### "sC" - `Integer`
+
+`Syntax Checker Type` This tells CodeKit which syntax checker to run when processing this file. It is one of the values below. You should **strongly** prefer ESLint over JSHint or JSLint.
+
+| Value             | Syntax Checker        |
+| ----------------- | --------------------- |
+| 0                 | None                  |
+| 1                 | JSHint                |
+| 2                 | JSLint                |
+| 3                 | ESLint                |
+
+
+### "tS" - `Integer`
+
+`Transpiler Style` This tells CodeKit which transpiler to run on this file. It is one of these values:
+
+| Value             | Transpiler            |
+| ----------------- | --------------------- |
+| 0                 | None                  |
+| 1                 | Babel                 |
+
+
+### "bF" - `Integer`
+
+`Bundle Format` This value determines whether CodeKit runs RollupJS to bundle ES6 imports in this file and, if so, specifies the format of that bundle. It is one of these values:
+
+| Value             | Bundle Format         |
+| ----------------- | --------------------- |
+| 0                 | None (Do not bundle)  |
+| 1                 | AMD                   |
+| 2                 | CommonJS              |
+| 3                 | ESModule              |
+| 4                 | IIFE                  |
+| 5                 | SystemJS              |
+| 6                 | UMD                   |
+
+
+.  
+.  
+.  
+
+## TypeScript Keys
+
+**NOTE:** TypeScript has *many* configuration options. A subset of those options is available on a file-by-file basis. The complete set of options is available in Project Settings. Options that appear only in Project Settings will apply to ALL TypeScript files in a Project.
+
+In addition to the [shared keys](#shared-keys) common to all files, TypeScript files have these keys:
+
+
+### "cDF" - `Integer`
+
+`Create Declaration File` If this value is `1`, CodeKit will set the TypeScript compiler to create a `.d.ts` file. If it is `0`, that option will be set to false.
+
+
+### "jxM" - `Integer`
+
+`JSX Handling` This value determines how the TypeScript compiler handles JSX code. It is one of these values:
+
+| Value             | JSX Handling Mode     |
+| ----------------- | --------------------- |
+| 0                 | React                 |
+| 1                 | Preserve              |
+| 2                 | ReactNative           |
+
+
+### "ma" - `Integer`
+
+`Source Map` If this value is `1`, CodeKit will create a source map when processing this file. If the value is `0`, it will *not* create a source map.
+
+
+### "mi" - `Integer`
+
+`Minify Output` If this value is `1`, CodeKit will minify the output file using TerserJS. If the value is `0`, the output file will not be minified.
+
+
+### "moR" - `Integer`
+
+`Module Resolution Type` This determines how the TypeScript compiler resolves modules. It is one of these values:
+
+| Value             | Module Resolution     |
+| ----------------- | --------------------- |
+| 0                 | Node                  |
+| 1                 | Classic               |
+
+
+### "moT" - `Integer`
+
+`Module Type` Thsi determines the Module Type the TypeScript compiler creates. It is one of these values:
+
+| Value             | Module Type           |
+| ----------------- | --------------------- |
+| 0                 | CommonJS              |
+| 1                 | AMD                   |
+| 2                 | System                |
+| 3                 | UMD                   |
+| 4                 | ES2015                |
+| 5                 | ESNext                |
+
+
+### "rC" - `Integer`
+
+`Remove Comments` If this value is `1`, CodeKit will enable the "Remove Comments" option on the TypeScript compiler. If it is `0`, that option will be set to false.
+
+
+### "tEC" - `Integer`
+
+`Target ECMA Version` This determines the target ECMAScript version for which the TypeScript compiler generates code. It is one of these values:
+
+| Value             | ECMAScript Version    |
+| ----------------- | --------------------- |
+| 0                 | ES3                   |
+| 1                 | ES5                   |
+| 2                 | ES2015                |
+| 3                 | ES2016                |
+| 4                 | ES2017                |
+| 2018              | ES2018                |
+| 5                 | ESNext                |
+
+.  
+.  
+.  
+
+## HAML Keys
+
+
+
+
+
+.  
+.  
+.  
+
+
+
+## Pug Keys
+
+
+
+.  
+.  
+.  
+
+
+
+## SLIM Keys
+
+
+
+.  
+.  
+.  
+
+
+
+## Kit Keys
+
+
+
+.  
+.  
+.  
+
+
+
+## Markdown Keys
+
+
+
+.  
+.  
+.  
+
+
+
+## JSON Keys
+
+
+.  
+.  
+.  
+
+
+
+## JPEG Keys
+
+
+.  
+.  
+.  
+
+
+
+## PNG Keys
+
+
+.  
+.  
+.  
+
+
+
+## SVG Keys
+
+
+.  
+.  
+.  
+
+
+
+## GIF Keys
+
+
+.  
+.  
+.  
+
+
+
+## Keys For Folder File Types
+
+
+
+.  
+.  
+.  
+
+
+
+## Keys For Other File Types
+
+
+.  
+.  
+.  
+
+
 
 
 
