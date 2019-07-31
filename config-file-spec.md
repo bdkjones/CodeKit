@@ -1190,6 +1190,76 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 In addition to the [shared keys](#keys-shared-by-all-files) common to all files, SVG files have these keys:
 
 
+### "miP" - `Integer`
+
+`Use MultiPass` If this value is `1`, SVGO will run multiple passes to optimize the file. If the value is `0`, it will run only one pass.
+
+
+### "opt" - `Integer`
+
+`Optimized` If this value is `1`, this SVG file has already been previously optimized in-place. If the value is `0`, the file has not previously been optimized in-place.
+
+
+### "plM" - `Integer`
+
+`Plugin Mask` This is a 64-Bit bitmask: each bit of the number functions as a Boolean to turn a specific SVGO plugin on or off. To turn a plugin ON, set the value of the corresponding bit to `1`. To turn a plugin OFF, set the value of the bit to `0`. The plugin associated with each bit appears in the table below.
+
+**WARNING:** If you are parsing the Config File in JavaScript, you must use a `BigInt` for this value. If you are creating a Config File from scatch, you can use the `Number` type as long as you do not need to set any bits over `2^53`.
+
+| Bit Position | SVGO Plugin                                             |
+|--------------|---------------------------------------------------------|
+| 0            | Cleanup Attributes                                      |
+| 1            | Remove DOCTYPE Declaration                              |
+| 2            | Remove XML Processing Instructions                      |
+| 3            | Remove Comments                                         |
+| 4            | Remove Metadata                                         |
+| 5            | Remove Title                                            |
+| 6            | Remove Description                                      |
+| 7            | Remove Useless Definitions                              |
+| 8            | Remove Editor Namespace Data                            |
+| 9            | Remove Empty Attributes                                 |
+| 10           | Remove Hidden Elements                                  |
+| 11           | Remove Empty Text Elements                              |
+| 12           | Remove Empty Containers                                 |
+| 13           | Remove ViewBox                                          |
+| 14           | Cleanup Enable Background                               |
+| 15           | Minify Styles                                           |
+| 16           | Convert Styles to Attributes                            |
+| 17           | Convert Colors                                          |
+| 18           | Convert Path Data                                       |
+| 19           | Convert Transform                                       |
+| 20           | Remove Unknowns and Defaults                            |
+| 21           | Remove Non-Inheritable Group Attributes                 |
+| 22           | Remove Useless Stroke and Fill                          |
+| 23           | Remove Unused Namespace                                 |
+| 24           | Cleanup IDs                                             |
+| 25           | Cleanup Numeric Values                                  |
+| 26           | Move Element Attributes to Group                        |
+| 27           | Move Group Attributes to Elements                       |
+| 28           | Collapse Groups                                         |
+| 29           | Remove Raster Images                                    |
+| 30           | Merge Paths                                             |
+| 31           | Convert Shape To Path                                   |
+| 32           | Sort Attributes                                         |
+| ~~33~~       | ~~DEPRECATED AND REMOVED~~                              |
+| 34           | Remove Dimensions                                       |
+| 35           | Remove Attributes                                       |
+| 36           | Add Classes to SVG Element                              |
+| 37           | Remove Style Element                                    |
+| 38           | Remove XML Namespace                                    |
+| 39           | Remove Script Element                                   |
+| 40           | Inline Styles                                           |
+| 41           | Cleanup List of Values                                  |
+| 42           | Remove Off-Canvas Paths                                 |
+| 43           | Reuse Paths                                             |
+| 44           | Sort Defs Children                                      |
+| 45           | Convert Ellipse To Circle                               |
+
+
+### "pRP" - `Integer`
+
+`Pretty Printed` If this value is `1`, SVGO will produce output that is human-readable. If the value is `0`, the output will be minified.
+
 .  
 .  
 .  
@@ -1240,10 +1310,18 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 
 `Run HTML Minifier` If this value is `1`, CodeKit will run this file through an HTML Minifier. If the value is `0`, that will not be done. Enabling this option is appropriate only if the file is HTML.
 
+--------------------------
+.  
+.  
+.  
+.  
 
-.  
-.  
-.  
+
+# Project Settings
+
+
+
+
 
 
 
