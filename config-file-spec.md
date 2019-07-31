@@ -395,7 +395,7 @@ This stands for "Output Flags". It is a **bitmask** (a single number where the v
 
 ## Less Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, Less files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Less files have these keys:
 
 
 ### "aP" - `Integer`
@@ -478,7 +478,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Less files h
 
 ## Sass and SCSS Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, Sass and SCSS files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Sass and SCSS files have these keys:
 
 
 ### "aP" - `Integer`
@@ -534,7 +534,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Sass and SCS
 
 ## Stylus Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, Stylus files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Stylus files have these keys:
 
 
 ### "aP" - `Integer`
@@ -590,7 +590,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Stylus files
 
 Note: CodeKit allows users to process CSS files with Libsass to minify them, etc. (A CSS file may create another CSS file.) CSS files may also be the output of a Sass, Less, or Stylus file. In all cases, CodeKit stores the same properties for every CSS file—it simply does not use them when the CSS file is an output file.
 
-In addition to the [shared keys](#shared-keys) common to all files, CSS files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, CSS files have these keys:
 
 
 ### "aP" - `Integer`
@@ -626,7 +626,7 @@ In addition to the [shared keys](#shared-keys) common to all files, CSS files ha
 
 ## CoffeeScript Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, CoffeeScript files have these keys. **NOTE:** These keys apply to both `*.coffee` and `*.litcoffee` file types.
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, CoffeeScript files have these keys. **NOTE:** These keys apply to both `*.coffee` and `*.litcoffee` file types.
 
 
 ### "ma" - `Integer`
@@ -676,7 +676,7 @@ In addition to the [shared keys](#shared-keys) common to all files, CoffeeScript
 
 Note: CodeKit does not process JavaScript files in-place. That is, a JS file is processed and creates another JS file at a separate path. Some JS files will therefore be "output files" produced by other JS files. CodeKit stores these properties for every JS file—they simply are not used for output files.
 
-In addition to the [shared keys](#shared-keys) common to all files, JavaScript files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, JavaScript files have these keys:
 
 ### "ma" - `Integer`
 
@@ -733,7 +733,7 @@ In addition to the [shared keys](#shared-keys) common to all files, JavaScript f
 
 **NOTE:** TypeScript has *many* configuration options. A subset of those options is available on a file-by-file basis. The complete set of options is available in Project Settings. Options that appear only in Project Settings will apply to ALL TypeScript files in a Project.
 
-In addition to the [shared keys](#shared-keys) common to all files, TypeScript files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, TypeScript files have these keys:
 
 
 ### "cDF" - `Integer`
@@ -811,7 +811,7 @@ In addition to the [shared keys](#shared-keys) common to all files, TypeScript f
 
 ## HAML Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, HAML files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, HAML files have these keys:
 
 ### "cB" - `Integer`
 
@@ -869,7 +869,7 @@ In addition to the [shared keys](#shared-keys) common to all files, HAML files h
 
 **NOTE:** CodeKit treats `*.jade` files as `*.pug` files, but compiles the former files with the legacy Jade compiler. The settings are the same for both types of files.
 
-In addition to the [shared keys](#shared-keys) common to all files, Pug files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Pug files have these keys:
 
 
 ### "cB" - `Integer`
@@ -905,7 +905,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Pug files ha
 
 ## SLIM Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, Slim files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Slim files have these keys:
 
 
 ### "cB" - `Integer`
@@ -960,7 +960,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Slim files h
 
 ## Kit Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, Kit files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Kit files have these keys:
 
 ### "cB" - `Integer`
 
@@ -981,7 +981,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Kit files ha
 
 **NOTE:** CodeKit uses the MultiMarkdown compiler, which adds unique features to Markdown. The available options reflect this.
 
-In addition to the [shared keys](#shared-keys) common to all files, Markdown files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, Markdown files have these keys:
 
 
 ### "cB" - `Integer`
@@ -989,12 +989,88 @@ In addition to the [shared keys](#shared-keys) common to all files, Markdown fil
 `Run Cache Buster` If this value is `1`, CodeKit will scan the compiled Output File for URLs and append a query parameter to each URL that loads a resource. This forces browsers to load the resource from disk rather than serve an outdated, cached copy. If the value is `0`, this step is not performed. 
 
 
+### "cS" - `Integer`
+
+`Critic Markup Style` This determines how the MMD compiler handles Critic Markup. It is one of these values:
+
+| Value             | Critic Markup Handling|
+| ----------------- | --------------------- |
+| 0                 | Ignore                |
+| 1                 | Accept                |
+| 2                 | Reject                |
+
+
+### "eF" - `Integer`
+
+`Enable Footnotes` If this value is `1`, CodeKit will set the MMD compiler to enable footnotes. If the value is `0`, that option will be set to false.
+
+
+### "eL" - `Integer`
+
+`Enable Labels` If this value is `1`, CodeKit will set the MMD compiler to enable labels. If the value is `0`, that option will be set to false.
+
+
+### "eSQ" - `Integer`
+
+`Enable Smart Quotes` If this value is `1`, CodeKit will set the MMD compiler to support Smart Quotes. If the value is `0`, that option will be set to false.
+
+
+### "ema" - `Integer`
+
+`Mask Email Addresses` If this value is `1`, CodeKit will set the MMD compiler to mask email addresses. If the value is `0`, that option will be set to false.
 
 
 ### "hM" - `Integer`
 
 `Run HTML Minifier` If this value is `1`, CodeKit will run the compiled Output File through an HTML Minifier. If the value is `0`, that will not be done. MultiMarkdown files can compile to several types (not just HTML), so enabling this option is only appropriate if the Output File is HTML.
 
+
+### "oFM" - `Integer`
+
+`Output Format` This controls the type of output file that MMD produces when compiling. It is one of these values:
+
+| Value             | Output Format         |
+| ----------------- | --------------------- |
+| 0                 | HTML                  |
+| 2                 | LaTEX                 |
+| 3                 | Memoir                |
+| 4                 | Beamer                |
+| 6                 | FODT                  |
+| 9                 | Original Markdown     |
+| 11                | ODT                   |
+| 12                | TEXT Bundle           |
+| 13                | Compressed TEXT Bundle|
+| 14                | ePUB                  |
+
+
+### "oS" - `Integer`
+
+`Output Style` This controls the style of document that the MMD compiler produces. This option is meaningful only when the Output Format is set to HTML. It is one of these values:
+
+| Value             | Output Style          |
+| ----------------- | --------------------- |
+| 0                 | Complete HTML Document|
+| 1                 | HTML Snippet          |
+
+
+### "pHT" - `Integer`
+
+`Process HTML` If this value is `1`, the MMD compiler will be set to process HTML. If the value is `0`, the compiler will skip any HTML in the Markdown document.
+
+
+### "pME" - `Integer`
+
+`Parse Metadata` If this value is `1`, the MMD compiler will parse metadata while compiling. If the value is `0`, it will not. (Metadata is a unique MultiMarkdown feature.)
+
+
+### "rFN" - `Integer`
+
+`Random Footnote Numbers` If this value is `1`, the MMD compiler will use random numbers for footnotes. If the value is `0`, it will not.
+
+
+### "uCM" - `Integer`
+
+`Use Compatibility Mode` If this value is `1`, the MMD compiler will disable support for all MultiMarkdown extensions and process the input file as close as possible to John Gruber's original Markdown spec. If the value is `0`, MultiMarkdown features *will* be enabled. This setting overrides all others if it's `1`.
 
 .  
 .  
@@ -1004,7 +1080,22 @@ In addition to the [shared keys](#shared-keys) common to all files, Markdown fil
 
 ## JSON Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, JSON files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, JSON files have these keys:
+
+
+### "oO" - `Integer`
+
+`Order Output` If this value is `1`, CodeKit will sort keys alphabetically when processing the JSON file. (The order of items in Arrays will not be affected.) If the value is `0`, the order of keys in the file will be random.
+
+
+### "oS" - `Integer`
+
+`Output Style` This controls the style of the processed JSON file. It is one of these values:
+
+| Value             | Output Style          |
+| ----------------- | --------------------- |
+| 0                 | Pretty-Printed        |
+| 1                 | Minified              |
 
 
 .  
@@ -1015,7 +1106,7 @@ In addition to the [shared keys](#shared-keys) common to all files, JSON files h
 
 ## JPEG Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, JPEG files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, JPEG files have these keys:
 
 
 .  
@@ -1026,7 +1117,7 @@ In addition to the [shared keys](#shared-keys) common to all files, JPEG files h
 
 ## PNG Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, PNG files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, PNG files have these keys:
 
 
 .  
@@ -1037,7 +1128,7 @@ In addition to the [shared keys](#shared-keys) common to all files, PNG files ha
 
 ## SVG Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, SVG files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, SVG files have these keys:
 
 
 .  
@@ -1048,7 +1139,7 @@ In addition to the [shared keys](#shared-keys) common to all files, SVG files ha
 
 ## GIF Keys
 
-In addition to the [shared keys](#shared-keys) common to all files, GIF files have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, GIF files have these keys:
 
 
 .  
@@ -1059,7 +1150,7 @@ In addition to the [shared keys](#shared-keys) common to all files, GIF files ha
 
 ## Keys For Folder File Types
 
-The Folder type has no additional keys other than the [shared keys](#shared-keys) common to all files.
+The Folder type has no additional keys other than the [shared keys](#keys-shared-by-all-files) common to all files.
 
 .  
 .  
@@ -1069,7 +1160,7 @@ The Folder type has no additional keys other than the [shared keys](#shared-keys
 
 ## Keys For Other File Types
 
-In addition to the [shared keys](#shared-keys) common to all files, files of "Other" type have these keys:
+In addition to the [shared keys](#keys-shared-by-all-files) common to all files, files of "Other" type have these keys:
 
 
 ### "cB" - `Integer`
