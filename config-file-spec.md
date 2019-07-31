@@ -4,10 +4,12 @@
    2. [Top-Level Properties](#top-level-properties)
    3. [The "Project Attributes" Object](#project-attributes)
    4. [The "Files" Object](#files)
-      1. [Shared Keys](#shared-keys)
-      2. [Less](#less-keys)
-      3. [Sass & SCSS](#sass-and-scss-keys)
-      4. [Stylus](#stylus-keys)
+      1. [Keys Shared By All Files](#keys-shared-by-all-files)
+      2. [Less Keys](#less-keys)
+      3. [Sass & SCSS Keys](#sass-and-scss-keys)
+      4. [Stylus Keys](#stylus-keys)
+      5. [CSS Keys](#css-keys)
+      6. [CoffeeScript Keys](#coffeescript-keys)
    
 
 ------------------------
@@ -53,7 +55,10 @@ If you are **writing** a Config File from scratch and the values you intend to s
 If you are **reading** a Config File, you must treat numbers as 64-bit integers because you do not control whether or not they have bits beyond (2^53) "enabled". It is NOT safe to use `Number` to represent numberical values in this case.
 
 -----------------------------
-
+.  
+.  
+.  
+.  
 
 # Top Level Properties
 
@@ -81,7 +86,7 @@ The top level of the Config File is an object of type `{"key": value}`. It looks
 }
 ```
 
-### "AAInfo" — `String`
+### "AAInfo" - `String`
 Anything you provide will be overwritten by CodeKit, but you may want to explain that this is a CodeKit configuration file and the app can be downloaded at https://codekitapp.com/
 
 ### "buildSteps" - `[{"key": value, ...}, ...]`
@@ -104,24 +109,30 @@ This is an `Object` that stores settings for each individual file in the Project
 
 This is an `Array` of `Objects` of type `{"key": value}` that store information about each [Hook](https:/codekitapp.com/help/hooks/) that is defined for this Project. [See Details](#hooks).
 
-### "manualImportLinks"
+### "manualImportLinks" - `[Object, ...]`
 
-This stores information about import links between files that the user has created via drag-and-drop in CodeKit's UI. When parsing a Config File, you should treat this value as opaque and write it, unmodified, to your output. When creating a Config File from scratch, you should omit this property.
+This stores information about import links between files that the user has created via drag-and-drop in CodeKit's UI. When parsing a Config File, you should treat this value as an opaque `Array` and write it, unmodified, to your output. When creating a Config File from scratch, you should omit this property. (Drag-and-drop import links are a legacy feature from a time before ES6 module syntax.)
 
-### "projectAttributes" — `{"key": value, ... }`
+### "projectAttributes" - `{"key": value, ...}`
 
 This is an `Object` that stores basic biographical information about a Project. [See Details](#project-attributes)
 
-### "projectSettings" - `{"key": value, ... }`
+### "projectSettings" - `{"key": value, ...}`
 
 This is an `Object` that stores the Project Settings for this Project. It contains configuration for tooling such as ESLint, Babel, Autoprefixer, etc. It also provides "default" values to fall back on when a file in `files` (above) is missing a value for a particular setting. If that value is *also* missing from `projectSettings`, CodeKit falls back to the "Defaults for New Projects" that the user has specified. At that level, **every** possible setting is guaranteed to have a value. [See Details](#project-settings)
 
-### "settingsFileVersion" — `String` (REQUIRED)
+### "settingsFileVersion" - `String` (REQUIRED)
 
 Pass the `String` `"3"` for this value. CodeKit will ignore any Config File that is missing this value.
 
+-----------------------------
+.  
+.  
+.  
+. 
 
-----------------------------
+
+
 
 # Project Attributes
 
@@ -137,11 +148,11 @@ This top-level property is an `Object` that contains basic biographical informat
 }
 ```
 
-### "creationDate" — `Double`
+### "creationDate" - `Double`
 
 The date the project was created. Stored as the number of seconds since `00:00:00 UTC on 1 January 2001` in `Double` format. If you omit this property, CodeKit will set it to whatever date the user first added this Project to the app, which is probably what you want.
 
-### "displayValue" — `String`
+### "displayValue" - `String`
 
 The name of the Project as it appears in the UI. If this is omitted, the name of the Project Root Folder will be used.
 
@@ -149,7 +160,7 @@ The name of the Project as it appears in the UI. If this is omitted, the name of
 
 If `0`, CodeKit will keep `displayValue` in sync with the Project Root Folder name (as the user renames the folder, the `displayValue` will be updated to match). If `1`, renaming the folder has no effect on `displayValue`. If you omit this value, it defaults to `0`.
 
-### "iconImageName" — `String`
+### "iconImageName" - `String`
 
 This is *either* the name of a default Project Icon Image from the list below **OR** a relative path from the Project Root Folder to the image (JPG or PNG) that should be used as the Project Icon. If you supply a relative path, it **MUST** begin with a `/`.
 
@@ -230,13 +241,17 @@ The available Project Icon Names that are bundled into CodeKit are:
 * meme-angryBaby
 * meme-yesBaby
 
-### "iconImageWasSetByUser" — `Integer`
+### "iconImageWasSetByUser" - `Integer`
 
 If `0`, CodeKit will automatically set an `apple-touch-icon.png` or `favicon` image as the Project Icon whenever it finds one anywhere in the Project. If `1`, `iconImageName` will not be changed when the app finds one of these files. If you omit this value, it defaults to `0`.
 
+-----------------------------
+.  
+.  
+.  
+. 
 
 
----------------------------
 
 # Files
 
@@ -274,11 +289,14 @@ The files object is keyed by the **relative** path from the Project Root Folder 
 }
 ```
 
-### Abbreviated Keys
-The keys are abbreviated in each `file` object because in Projects with tens of thousands of files, the extra characters add megabytes to the size of the Config File. 
+### Why Are The Keys Abbreviated?
+Because in Projects with tens of thousands of files, the extra characters add megabytes to the size of the Config File. 
 
+.  
+.  
+.  
 
-## Shared Keys
+## Keys Shared By All Files
 All files have the following keys, regardless of their type:
 
 
@@ -328,7 +346,7 @@ Do not use any value that is not explicitly listed in the table above. Doing so 
 
 
 
-### "oA" — `Integer`
+### "oA" - `Integer`
 
 This stands for "Output Action". It specifies what CodeKit will do when a given file changes on disk or is processed during a Build. The value is one of:
 
@@ -340,14 +358,14 @@ This stands for "Output Action". It specifies what CodeKit will do when a given 
 
 
 
-### "oAP" — `String`
+### "oAP" - `String`
 
 This stands for "Output Abbreviated Path". It is the relative path from the Project Root Folder to the Output File you want to create when the given file is processed. It **MUST** begin with a `/`.
 
 Note: CodeKit *does* allow setting an Output Path to a location outside of the Project Root Folder, but that is extremely discouraged. If the `OutputPathIsOutsideProject` flag is set, CodeKit will interpret the path provided here as relative to the disk root instead of the Project Root Folder.
 
 
-### "oF" - `String`
+### "oF" - `Integer`
 
 This stands for "Output Flags". It is a **bitmask** (a single number where the value of each bit represents a boolean). The default value is `0`. Currently, only the first three bits are used:
 
@@ -358,13 +376,16 @@ This stands for "Output Flags". It is a **bitmask** (a single number where the v
 | 1               | OutputPathWasSetByUser     | CodeKit adjusts a file's Output Path automatically when the file is renamed, moved, or when the Build folder is enabled/disabled. If this bit is set to `1`, the Output Path is locked; it will not be automatically adjusted. This bit is set to `1` when a user explicitly sets an Output Path for a file or clicks the "lock" button in CodeKit's UI.
 | 2               | OutputPathIsOutsideProject | If this bit is set to `1`, CodeKit interprets the path supplied for the `oAP` property as relative to the disk root instead of the Project Root Folder.
 
+.  
+.  
+.  
 
 ## Less Keys
 
 In addition to the [shared keys](#shared-keys) common to all files, Less files have these keys:
 
 
-### "aP" — `Integer`
+### "aP" - `Integer`
 
 `Autoprefixer` If this value is `1`, CodeKit will run Autoprefixer on the compiled CSS file. If the value is `0`, CodeKit will *not* run Autoprefixer.
 
@@ -374,24 +395,24 @@ In addition to the [shared keys](#shared-keys) common to all files, Less files h
 `Bless` If this value is `1`, CodeKit will run Bless on the compiled CSS file. If the value is `0`, CodeKit will *not* run Bless.
 
 
-### "eJ" — `Integer`
+### "eJ" - `Integer`
 
 `Enable JavaScript` If this value is `1`, CodeKit will set the Less compiler's "Enable JavaScript" option to true. If the value is `0`, that option will be set to false.
 
 
 ### "ie" - `Integer`
 
-`IE Compatibility` If this value is `1` CodeKit will enable the "IE Compatibility" option on the Less compiler. If it is `0`, that option will be set to false.
+`IE Compatibility` If this value is `1`, CodeKit will enable the "IE Compatibility" option on the Less compiler. If it is `0`, that option will be set to false.
 
 
-### "iI" — `Integer`
+### "iI" - `Integer`
 
-`Insecure Imports` If this value is `1` CodeKit will enable the "Allow Insecure Imports" option on the Less compiler. If it is `0`, that option will be set to false.
+`Insecure Imports` If this value is `1`, CodeKit will enable the "Allow Insecure Imports" option on the Less compiler. If it is `0`, that option will be set to false.
 
 
-### "ma" — `Integer`
+### "ma" - `Integer`
 
-`Source Map` If this value is `1` CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
+`Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
 
 
 ### "mS" - `Integer`
@@ -416,7 +437,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Less files h
 | 1                 | Compressed (Minified) |
 
 
-### "rwU" — `Integer`
+### "rwU" - `Integer`
 
 `Rewrite URLs` This value determines which setting CodeKit passes to the Less compiler for the "rewrite URLs" option. It is one of these values:
 
@@ -432,10 +453,14 @@ In addition to the [shared keys](#shared-keys) common to all files, Less files h
 `Strict Imports` If this value is `1`, CodeKit will enable the "strict imports" Less compiler option when compiling this file. If the value is `0`, this compiler option is set to false.
 
 
-### "sU" — `Integer`
+### "sU" - `Integer`
 
 `Strict Units` If this value is `1`, CodeKit will enable the "strict units" Less compiler option when compiling this file. If the value is `0`, this compiler option is set to false.
 
+
+.  
+.  
+.  
 
 
 ## Sass and SCSS Keys
@@ -443,7 +468,7 @@ In addition to the [shared keys](#shared-keys) common to all files, Less files h
 In addition to the [shared keys](#shared-keys) common to all files, Sass and SCSS files have these keys:
 
 
-### "aP" — `Integer`
+### "aP" - `Integer`
 
 `Autoprefixer` If this value is `1`, CodeKit will run Autoprefixer on the compiled CSS file. If the value is `0`, CodeKit will *not* run Autoprefixer.
 
@@ -468,9 +493,9 @@ In addition to the [shared keys](#shared-keys) common to all files, Sass and SCS
 | 2                 | Print full debug info                   |
 
 
-### "ma" — `Integer`
+### "ma" - `Integer`
 
-`Source Map` If this value is `1` CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
+`Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
 
 
 ### "oS" - `Integer`
@@ -485,9 +510,13 @@ In addition to the [shared keys](#shared-keys) common to all files, Sass and SCS
 | 3                 | Compressed            |
 
 
-### "uL" — `Integer`
+### "uL" - `Integer`
 
 `Use Libsass` If this value is `1`, CodeKit will use the Libsass compiler. If it is `0`, CodeKit will use the legacy Sass compiler. (Libsass is the default and is highly recommended.)
+
+.  
+.  
+.  
 
 
 ## Stylus Keys
@@ -495,19 +524,152 @@ In addition to the [shared keys](#shared-keys) common to all files, Sass and SCS
 In addition to the [shared keys](#shared-keys) common to all files, Stylus files have these keys:
 
 
+### "aP" - `Integer`
 
+`Autoprefixer` If this value is `1`, CodeKit will run Autoprefixer on the compiled CSS file. If the value is `0`, CodeKit will *not* run Autoprefixer.
+
+
+### "bl" - `Integer`
+
+`Bless` If this value is `1`, CodeKit will run Bless on the compiled CSS file. If the value is `0`, CodeKit will *not* run Bless.
+
+
+### "dS" - `Integer`
+
+`Debug Style` This value controls which "Debug Style" CodeKit enables for the Stylus compiler. It is one of these values:
+
+| Value             |  Debug Style                            |
+| ----------------- | --------------------------------------- |
+| 0                 | None                                    |
+| 1                 | Print line numbers above selectors      |
+| 2                 | Print Firebug info                      |
+| 3                 | Print line numbers AND Firebug info     |
+
+
+### "iC" - `Integer`
+
+`Import CSS` If this value is `1`, CodeKit will set the Stylus compiler to import CSS files. If it is `0`, that option will be set to false.
+
+### "ma" - `Integer`
+
+`Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
+
+
+### "oS" - `Integer`
+
+`Output Style` This controls which output style the Stylus compiler uses. It is one of these values:
+
+| Value             |  Output Style         |
+| ----------------- | --------------------- |
+| 0                 | Regular               |
+| 1                 | Compressed            |
+
+
+### "rrU" - `Integer`
+
+`Resolve Relative URLs` If this value is `1`, CodeKit will set the Stylus compiler to resolve relative URLs. If the value is `0`, that option will be set to false.
+
+.  
+.  
+.  
+
+## CSS Keys
+
+Note: CodeKit allows users to process CSS files with Libsass to minify them, etc. (A CSS file may create another CSS file.) CSS files may also be the output of a Sass, Less, or Stylus file. In all cases, CodeKit stores the same properties for every CSS file—it simply does not use them when the CSS file is an output file.
+
+In addition to the [shared keys)(#shared-keys) common to all files, CSS files have these keys:
+
+
+### "aP" - `Integer`
+
+`Autoprefixer` If this value is `1`, CodeKit will run Autoprefixer on the CSS file. If the value is `0`, CodeKit will *not* run Autoprefixer.
+
+
+### "bl" - `Integer`
+
+`Bless` If this value is `1`, CodeKit will run Bless on the CSS file. If the value is `0`, CodeKit will *not* run Bless.
+
+
+### "ma" - `Integer`
+
+`Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
+
+
+### "oS" - `Integer`
+
+`Output Style` This controls which output style the Libsass compiler uses when processing this CSS file. It is one of these values:
+
+| Value             |  Output Style         |
+| ----------------- | --------------------- |
+| 0                 | Nested                |
+| 1                 | Expanded              |
+| 2                 | Compact               |
+| 3                 | Compressed            |
+
+
+.  
+.  
+.  
+
+## CoffeeScript Keys
+
+In addition to the [shared keys](#shared-keys) common to all files, CoffeeScript files have these keys. **NOTE:** These keys apply to both `*.coffee` and `*.litcoffee` file types.
+
+
+### "ma" - `Integer`
+
+`Source Map` If this value is `1`, CodeKit will create a source map when compiling this file. If the value is `0`, it will *not* create a source map.
+
+
+### "oS" - `Integer`
+
+`Output Style` This controls which output style the CoffeeScript compiler uses when processing this file. It is one of these values:
+
+| Value             | Output Style                  |
+| ----------------- | ----------------------------- |
+| 0                 | Regular                       |
+| 1                 | No top-level function wrapper |
+
+
+### "sC" - `Integer`
+
+`Syntax Checker Type` This tells CodeKit which syntax checker to run when processing this file. It is one of these values:
+
+| Value             | Syntax Checker        |
+| ----------------- | --------------------- |
+| 0                 | None                  |
+| 1                 | CoffeeLint            |
+
+
+### "tS" - `Integer`
+
+`Transpiler Style` This tells CodeKit which transpiler to run on the *output* file, once the CoffeeScript file is processed. It is one of these values:
+
+| Value             |  Transpiler           |
+| ----------------- | --------------------- |
+| 0                 | None                  |
+| 1                 | Babel                 |
 
 
 
 
 ----------------------------
-
+.  
+.  
+.  
+.  
 
 # Build Steps
-This is the top-level property named `buildSteps`, which is an `Array` of `{"string": value}`. There are currently two kinds of Build Steps: "run a script", "process certain files", and "process remaining files". The `buildSteps` Array may contain any number of the first two types and **exactly one** of the third type. The order matters; it is the order in which the user expects the steps to execute. Each type of Build Step has a slightly different structure:
+This is the top-level property named `buildSteps`, which is an `Array` of `{"string": value}`. There are currently three types of Build Steps:
+
+* "run a script" 
+* "process specific files"
+* "process all remaining files" 
+
+The `buildSteps` Array may contain any number of the first two types and **exactly one** of the third type. The order matters; it is the order in which the user expects the steps to execute. Each type of Build Step has a slightly different structure:
+
 
 ### Process Certain Files
-
 
 
 
