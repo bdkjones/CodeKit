@@ -1109,6 +1109,36 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 In addition to the [shared keys](#keys-shared-by-all-files) common to all files, JPEG files have these keys:
 
 
+### "iS" - `Integer`
+
+`Initial Size` This is the size, in bytes, that the JPEG file was the first time CodeKit saw it. (CodeKit allows users to optimize images in-place, so the current size of the file is not necessarily its initial size.)
+
+
+### "jF" - `Integer`
+
+`JPEG Output Format` This determines what type of rendering the optimized JPEG will have. It is one of these values:
+
+| Value             | Format                |
+| ----------------- | --------------------- |
+| 0                 | Keep Existing Format  |
+| 1                 | Baseline              |
+| 2                 | Progressive           |
+
+
+### "oIPL" - `Integer`
+
+`Optimized In Place Lossy` If this value is `1`, this JPEG file has already been optimized in-place with lossy optimization (some quality reduction took place). If the value is `0`, the file has not previously been optimized in-place with lossy compression. CodeKit uses this value to warn the user before optimizing an image in-place multiple times with lossy compression.
+
+
+### "opt" - `Integer`
+
+`Optimized` If this value is `1`, this JPEG file has already been optimized in-place, but that optimization was lossless (no reduction in quality occurred). If the value is `0`, the file has not previously been losslessly optimized in-place.
+
+
+### "q" - `Integer`
+
+`Quality` This is a value between `0` and `100`, which specifies how aggressive to be when performing lossy optimizations. Higher values retain image quality, lower values sacrifice quality for smaller files. In general, values around `85` produce satisfactory images with 50-70% size reductions.
+
 .  
 .  
 .  
@@ -1119,6 +1149,35 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 
 In addition to the [shared keys](#keys-shared-by-all-files) common to all files, PNG files have these keys:
 
+
+### "iS" - `Integer`
+
+`Initial Size` This is the size, in bytes, that the PNG file was the first time CodeKit saw it. (CodeKit allows users to optimize images in-place, so the current size of the file is not necessarily its initial size.)
+
+
+### "oIPL" - `Integer`
+
+`Optimized In Place Lossy` If this value is `1`, this PNG file has already been optimized in-place with lossy optimization (some quality reduction took place). If the value is `0`, the file has not previously been optimized in-place with lossy compression. CodeKit uses this value to warn the user before optimizing an image in-place multiple times with lossy compression.
+
+
+### "opt" - `Integer`
+
+`Optimized` If this value is `1`, this PNG file has already been previously optimized in-place, but that optimization was lossless (no reduction in quality occurred). If the value is `0`, the file has not previously been losslessly optimized in-place.
+
+
+### "oT" - `Integer`
+
+`Optimizer Type` This specifies which PNG Optimizer should be used to process this file. **NOTE**: This value is a bitmask (each bit represents a Boolean on/off). To enable a specific optimizer, you set the bit in that position to `1`. To disable that optimizer, you set the bit to `0`. There are currently only two optimizers. To run *only* PNGQuant, set the value of `oT` to `0`. To run *only* OptiPNG, set it to `1`.
+
+| Bit Position      | Optimizer             |
+| ----------------- | --------------------- |
+| 0                 | PNGQuant              |
+| 1                 | OptiPNG               |
+
+
+### "q" - `Integer`
+
+`Quality` This is a value between `0` and `100`, which specifies how aggressive to be when performing lossy optimizations. Higher values retain image quality, lower values sacrifice quality for smaller files. In general, anything above `80` produces satisfactory images with 50-70% size reductions.
 
 .  
 .  
@@ -1141,6 +1200,15 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 
 In addition to the [shared keys](#keys-shared-by-all-files) common to all files, GIF files have these keys:
 
+
+### "iS" - `Integer`
+
+`Initial Size` This is the size, in bytes, that the GIF file was the first time CodeKit saw it. (CodeKit allows users to optimize images in-place, so the current size of the file is not necessarily its initial size.)
+
+
+### "opt" - `Integer`
+
+`Optimized` If this value is `1`, this GIF file has already been previously optimized in-place, but that optimization was lossless (no reduction in quality occurred). If the value is `0`, the file has not previously been losslessly optimized in-place.
 
 .  
 .  
