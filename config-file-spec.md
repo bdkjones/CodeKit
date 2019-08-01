@@ -23,6 +23,9 @@
       17. [GIF Keys](#gif-keys)
       18. [Keys for "Folder" File Types](#keys-for-folder-file-types)
       19. [Keys for "Other" File Types](#keys-for-other-file-types)
+   5. [The "Project Settings" Object](#project-settings)
+      1. [Top-Level Settings](#top-level-settings)
+      2. [LangaugeDefaults Objects](#language-defaults)
    
 
 ------------------------
