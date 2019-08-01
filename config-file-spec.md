@@ -1319,7 +1319,292 @@ In addition to the [shared keys](#keys-shared-by-all-files) common to all files,
 
 # Project Settings
 
+This is a `{"key": value, ...}` Object that stores a massive amount configuration options. There are several main "sections" to Project Settings:
 
+* **Top-Level Settings** - These are top-level key/value pairs on the Project Settings object. 
+
+* **Language Defaults** - When a new file is added to the Project, these objects store the initial settings that should be used for that file. These initial settings are also used as a fallback in case a `file` object does not contain a value for a particular setting. There is one of these objects for each type of file that CodeKit supports. There is ALSO one of these objects for each custom langauge the User has added to CodeKit.
+
+.  
+.  
+.  
+
+## Top-Level Settings
+
+
+### "abortBuildOnError" - `Integer`
+
+If this value is `1`, CodeKit will stop a Build whenever one file has an error. (Warnings do not count as errors.) If the value is `0`, the Build will continue.
+
+
+### "allowInjectionReloads" - `Integer`
+
+If this value is `1`, CodeKit will reload *just* stylesheets when a change occurs that affects only CSS. (It will reload the entire page if a change affects other types of files.) If this value is `0`, CodeKit will reload the entire page everytime a browser refresh is triggered.
+
+
+### "alwaysUseExternalServer" - `Integer`
+
+If this value is `1`, CodeKit's preview server will proxy all requests to the server at the address specified by `externalServerAddress`. If this value is `0`, CodeKit will use its internal HTTP server to handle requests. 
+
+
+### "animateCSSInjections" - `Integer`
+
+If this value is `1`, CodeKit will animate changes to CSS when reloading stylesheets. If the value is `0`, it will not.
+
+
+### "autoBuildNewItems" - `Integer`
+
+If this value is `1`, CodeKit will automatically process/compile new files as they are added to the Project. (This is done *only* if the Project uses a Build folder, since auto-processing files without a Build folder could be destructive.) If the value is `0`, new items are not automatically processed.
+
+
+### "autoprefixerEnableIEGrid" - `Integer`
+
+If this value is `1`, the Autoprefixer "Support for IE Grid" option is enabled when running Autoprefixer. If the value is `0`, that option is set to false.
+
+
+### "babel7PresetType" - `Integer`
+
+This controls which presets are used when running Babel. The value is a bitmask—each bit represents a boolean that controls a specific preset, as depicted in the table below. To turn a preset ON, set the corresponding bit to `1`. To turn a preset OFF, set the corresponding bit to `0`. (The default value is `1`, which enables the `ENV` preset.)
+
+| Bit Position      | Babel Preset          |
+| ----------------- | --------------------- |
+| 0                 | ENV                   |
+| 1                 | React                 |
+| 2                 | Flow                  |
+
+
+### "babelAllowRCFiles" - `Integer`
+
+If this value is `1`, Babel will look for and load `.babelrc` files while transpiling. If the value is `0`, those files will be ignored.
+
+
+### "babelAuxiliaryCommentAfter" - `String`
+
+This `String` is written after each change that Babel makes in transpiled code. The default value is an empty string: `""`
+
+
+### "babelAuxiliaryCommentBefore" - `String`
+
+This `String` is written before each change that Babel makes in transpiled code. The default value is an empty string: `""`
+
+
+### "babelConfigType" - `Integer`
+
+This controls where Babel gets its configuration. It is one of these values:
+
+| Value             | Description           |
+| ----------------- | --------------------- |
+| 0                 | Auto - Babel selects which plugins to use based on the BrowsersList string. (Babel-Preset-ENV) |
+| 1                 | Manual - The plugins and presets specified by the user in CodeKit's UI are used.               |
+| 2                 | Config File - All configuration options from CodeKit are ignored and the user is responsible for configuring Babel with a Babel configuration file in the Project. |
+
+
+### "babelCustomPluginsList" - `String`
+
+This is a comma-separated list of additional plugins that should be passed to Babel. The user is responsible for installing these plugins in a `node_modules` folder within the Project. The default value is an empty string: `""`
+
+### "babelCustomPresetList" - `String`
+
+This is a comma-separated list of additional presets that should be passed to Babel. The user is responsible for installing these presets in a `node_modules` folder within the project. The default value is an empty string: `""`
+
+
+### "babelExcludeString" - `String`
+
+This is a comma-separated list of regex patterns that are passed to Babel as paths/items to skip when transpiling. The default value excludes any item with a path component matching `node_modules`, `core-js`, or `bower_components`: `"/\\/node_modules\\//, /\\/core-js\\//, /\\/bower_components\\//"`
+
+
+### "babelInsertModuleIDs" - `Integer`
+
+If this value is `1`, Babel will insert module IDs during transpiling. If the value is `0`, it will not.
+
+
+### "babelModuleID" - `String`
+
+This `String` specifies the module ID to insert if `babelInsertModuleIDs` is `1`. The default value is an empty string: `""`
+
+
+### "babelNoComments" - `Integer`
+
+If this value is `1`, Babel will not insert auxiliary comments. If it is `0`, the comments specified in `babelAuxiliaryCommentAfter` and `babelAuxiliaryCommentBefore` will be inserted.
+
+
+### "babelPlugins" - `{"key": {"key": value}, ...}`
+
+This is a list of all the standard Babel Plugins (those bundled with CodeKit) and whether they are enabled/disabled for this Project. Each entry in this Object looks like this:
+
+```javascript
+"babelPlugins": {
+	"arrow-functions": {
+		"active": 0
+	},
+	...
+}
+```
+
+Entries are keyed by the name of a specific plugin from the list below. If the plugin should be used when Babel runs, the `active` property is set to `1`. If the plugin should NOT be used when Babel runs, set the `active` property to `0`. Do not add any items other than those in the list below. To set custom plugins, use `babelCustomPluginsList`.
+
+**NOTE:** By default, Babel auto-selects which plugins to use based on the Browsers specified in the BrowsersList string. If you want to manually specify which plugins to run, you must set the `babelConfigType` property to `1`.
+
+List of Babel plugin names to use:
+
+```javascript
+"arrow-functions"
+"async-generator-functions"
+"async-to-generator"
+"block-scoped-functions"
+"block-scoping"
+"class-properties"
+"classes"
+"computed-properties"
+"decorators"
+"destructuring"
+"do-expressions"
+"dotall-regex"
+"duplicate-keys"
+"exponentiation-operator"
+"export-default-from"
+"external-helpers"
+"flow-strip-types"
+"for-of"
+"function-bind"
+"function-name"
+"function-sent"
+"inline-consecutive-adds"
+"inline-environment-variables"
+"instanceof"
+"jscript"
+"literals"
+"logical-assignment-operators"
+"member-expression-literals"
+"merge-sibling-variables"
+"minify-booleans"
+"minify-builtins"
+"minify-constant-folding"
+"minify-dead-code-elimination"
+"minify-flip-comparisons"
+"minify-guarded-expressions"
+"minify-infinity"
+"minify-mangle-names"
+"minify-numeric-literals"
+"minify-simplify"
+"minify-type-constructors"
+"modules-amd"
+"modules-commonjs"
+"modules-systemjs"
+"modules-umd"
+"named-capturing-groups-regex"
+"new-target"
+"node-env-inline"
+"nullish-coalescing-operator"
+"numeric-separator"
+"object-assign"
+"object-rest-spread"
+"object-set-prototype-of-to-assign"
+"object-super"
+"optional-catch-binding"
+"optional-chaining"
+"parameters"
+"partial-application"
+"pipeline-operator"
+"private-methods"
+"property-literals"
+"property-mutators"
+"proto-to-assign"
+"react-constant-elements"
+"react-display-name"
+"react-inline-elements"
+"react-jsx"
+"react-jsx-compat"
+"react-jsx-self"
+"react-jsx-source"
+"regenerator"
+"regexp-constructors"
+"remove-console"
+"remove-debugger"
+"remove-undefined"
+"reserved-words"
+"runtime"
+"shorthand-properties"
+"simplify-comparison-operators"
+"spread"
+"sticky-regex"
+"strict-mode"
+"template-literals"
+"throw-expressions"
+"typeof-symbol"
+"undefined-to-void"
+"unicode-property-regex"
+"unicode-regex"
+```
+
+
+### "babelRetainLines" - `Integer`
+
+If this value is `1`, Babel will attempt to keep line numbers the same during transpiling. If the value is `0`, it will not.
+
+
+### "babelUseBuiltInsType" -  `Integer`
+
+This controls the `useBuiltIns` Babel option. It is one of these values:
+
+| Value             | UseBuiltIns Option    |
+| ----------------- | --------------------- |
+| 0                 | False                 |
+| 1                 | Entry                 |
+| 2                 | Usage                 |
+
+
+### "bowerAbbreviatedPath" - `String`
+
+This `String` provides the relative path from the Project Root Folder to the folder where Bower should install components. The default is `"bower_components"`, which will create a subfolder with that name in the Project Root Folder.
+
+
+### "bowerForceLatestOnConflict" - `Integer`
+
+If this value is `1`, Bower will automatically use the latest version of a component when a conflict arises. If the value is `0`, Bower will output an error and refuse to continue until the user resolves the conflict manually.
+
+
+### "bowerTargetDependencyListType" - `Integer`
+
+This controls to which dependency list in the `bower.json` an installed component is added. It is one of these values:
+
+| Value             | Dependency List       |
+| ----------------- | --------------------- |
+| 1                 | Production            |
+| 2                 | Development           |
+
+
+### "bowerUseExactVersion" - `Integer`
+
+If this value is `1`, when a component is installed, the `bower.json` file will specify that the **exact** version installed is required. If the value is `0`, the `bower.json` file will use a semantic version string that allows any newer version of the component, up to but not including any version where the first non-zero version number has changed.
+
+
+### "browserRefreshDelay" - `Integer`
+
+This is the number of seconds that CodeKit will wait between the end of processing a file and issuing a command to refresh browsers. It is useful for people working on remote servers, where there is a lag between the time a file finishes processing and the time it finishes uploading to the remote server's disk. The default value is `0`. The maximum value is `10`.
+
+
+### "browserslistString" - `String`
+
+This `String` is used by Autoprefixer and Babel (if Babel is set to auto-configure itself). The value **MUST** be a valid browserslist string or Autoprefixer and Babel will fail to run.
+
+
+### "buildFolderActive" - `Integer`
+
+If this value is `1`, this Project uses a Build Folder. If the value is `0`, it does not. **NOTE:** When this setting is toggled in CodeKit, the app automatically adjusts every file's Output Path by either adding or removing the `buildFolderName` to the beginning of the Output Path, as appropriate. If you change this setting manually, YOU are responsible for making sure the Output Path of each file (or the `lanagugeDefaults` object used to automatically set Output Paths on each type of file) are set appropriately. 
+
+
+### "buildFolderName" - `String`
+
+This is the name of the Build folder. It cannot be an empty string. The default value is `"build"`.
+
+
+### "cleanBuild" - `Integer`
+
+If this value is `1`, CodeKit will delete everything in the Build folder before beginning a new Build. If the value is `0`, existing items will not be deleted when a new build starts.
+
+
+### "coffeeLintFlags2" - `
 
 
 
